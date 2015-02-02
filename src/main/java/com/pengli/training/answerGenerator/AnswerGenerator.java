@@ -7,6 +7,7 @@ import java.util.Random;
 
 public class AnswerGenerator {
 	private int[] numberRepo = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+	private int DISABLE_FLAG = 10;
 
 	/**
 	 * @param args
@@ -27,9 +28,9 @@ public class AnswerGenerator {
 	private AnswerGenerator generatorOneFigure(int[] exclisive, List<Integer> output) {
 		int index = new Random().nextInt(10);
 		int oneFigure = this.numberRepo[index];
-		if (oneFigure != 10 && Arrays.binarySearch(exclisive, oneFigure) < 0) {
+		if (oneFigure != this.DISABLE_FLAG && Arrays.binarySearch(exclisive, oneFigure) < 0) {
 			output.add(oneFigure);
-			this.numberRepo[index] = 10;
+			this.numberRepo[index] = this.DISABLE_FLAG;
 			return this;
 		}
 		generatorOneFigure(exclisive, output);
